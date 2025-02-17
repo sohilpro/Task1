@@ -1,24 +1,20 @@
 <template>
   <main>
     <!-- Table Section -->
-    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div class="lg:max-w-[85rem] w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
       <!-- Card -->
       <div class="flex flex-col">
-        <div class="-m-1.5 overflow-x-auto">
-          <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="-m-1.5">
+          <div class="p-1.5 min-w-full lg:inline-block align-middle">
             <div
-              class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-900 dark:border-neutral-700"
+              class="bg-white border border-gray-200 rounded-xl shadow-sm lg:overflow-hidden"
             >
               <!-- Header -->
-              <div
-                class="px-6 py-4 border-b border-gray-200 dark:border-neutral-700"
-              >
-                <h2
-                  class="text-xl font-semibold text-gray-800 dark:text-neutral-200"
-                >
+              <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-800">
                   قیمت ارزهای دیجیتال بر اساس ارزش بازار
                 </h2>
-                <p class="text-sm text-gray-600 dark:text-neutral-400">
+                <p class="text-sm text-gray-600">
                   ارزش بازار جهانی ارزهای دیجیتال امروز 1.09 تریلیون دلار است که
                   <span class="text-green-500">0.5</span> درصد تغییر در 24 ساعت
                   گذشته داشته است.
@@ -27,19 +23,20 @@
               <!-- End Header -->
 
               <!-- Table -->
+               <!-- <div class="overflow-x-auto"> -->
               <table
                 dir="ltr"
                 lang="en"
-                class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700"
+                class="min-w-full divide-y block lg:inline-table lg:overflow-hidden divide-gray-200"
               >
-                <thead class="bg-gray-50 dark:bg-neutral-800">
+                <thead class="bg-gray-50">
                   <tr>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-start whitespace-nowrap min-w-64"
+                      class="px-6  py-3 text-start whitespace-nowrap lg:min-w-64"
                     >
                       <span
-                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200"
+                        class="text-xs font-semibold uppercase tracking-wide text-gray-800"
                       >
                         جفت
                       </span>
@@ -50,7 +47,7 @@
                       class="px-6 py-3 text-start whitespace-nowrap"
                     >
                       <span
-                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200"
+                        class="text-xs font-semibold uppercase tracking-wide text-gray-800"
                       >
                         تغییر 24 ساعته
                       </span>
@@ -61,7 +58,7 @@
                       class="px-6 py-3 text-start whitespace-nowrap"
                     >
                       <span
-                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200"
+                        class="text-xs font-semibold uppercase tracking-wide text-gray-800"
                       >
                         قیمت
                       </span>
@@ -69,14 +66,15 @@
                   </tr>
                 </thead>
 
-                <tbody
-                  v-auto-animate
-                  class="divide-y divide-gray-200 dark:divide-neutral-700"
-                >
+                <tbody v-auto-animate class="divide-y divide-gray-200">
                   <tr v-for="(item, index) in tickers" :key="index">
                     <td class="size-px whitespace-nowrap px-6 py-3">
                       <NuxtLink
-                        :to="`https://ok-ex.io/trade/${item.arg.instId}`"
+                        :to="`https://ok-ex.io/trade/${item.arg.instId
+                          .split('-')[0]
+                          .toUpperCase()}_${item.arg.instId
+                          .split('-')[1]
+                          .toUpperCase()}`"
                         target="_blank"
                       >
                         <div class="flex items-center gap-x-3">
@@ -88,9 +86,7 @@
                               .toLowerCase()}.png`"
                           />
 
-                          <span
-                            class="font-semibold text-sm text-gray-800 dark:text-white"
-                          >
+                          <span class="font-semibold text-sm text-gray-800">
                             {{ item.arg.instId.split("-")[0].toUpperCase() }}
                           </span>
                         </div>
@@ -139,16 +135,16 @@
                     </td>
 
                     <td class="size-px whitespace-nowrap px-6 py-3">
-                      <span
-                        class="text-sm text-gray-800 dark:text-white font-semibold"
+                      <span class="text-sm text-gray-800 font-semibold"
                         >{{ item.data[0].last }} USDT</span
                       >
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <!-- End Table -->
             </div>
+              <!-- End Table -->
+            <!-- </div> -->
           </div>
         </div>
       </div>
